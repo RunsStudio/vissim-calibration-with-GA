@@ -1,0 +1,33 @@
+
+Data Collection (Compiled Data)
+
+File:     e:\pycharmprojects\ga-calibration\test.inp
+Comment:  
+Date:     2020Äê1ÔÂ9ÈÕ 14:44:31
+
+Measurement     1: Data Collection Point(s) 1
+Measurement     2: Data Collection Point(s) 2
+Measurement     3: Data Collection Point(s) 3
+Measurement     4: Data Collection Point(s) 4
+
+Measur.: Data Collection Number
+from: Start time of the Aggregation interval
+to: End time of the Aggregation interval
+Number Veh: Number of Vehicles
+Speed: Speed [km/h]
+
+Measur.;from;to;Number Veh;Speed
+       ;    ;  ;;Mean
+       ;    ;  ;all veh. types;all veh. types
+1;900;1800;72;91.5
+2;900;1800;79;88.3
+3;900;1800;78;78.4
+4;900;1800;84;72.1
+1;1800;2700;65;90.5
+2;1800;2700;78;90.0
+3;1800;2700;82;77.6
+4;1800;2700;64;70.2
+1;2700;3600;52;94.1
+2;2700;3600;70;89.4
+3;2700;3600;74;79.0
+4;2700;3600;70;71.7
