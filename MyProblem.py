@@ -19,8 +19,8 @@ class MyProblem(ea.Problem):  # 继承Problem父类
         maxormins = [1]  # 初始化maxormins（目标最小最大化标记列表，1：最小化该目标；-1：最大化该目标）
         Dim = 3  # 初始化Dim（决策变量维数）
         varTypes = [0] * Dim  # 初始化varTypes（决策变量的类型，元素为0表示对应的变量是连续的；1表示是离散的）
-        lb = [1.2, 0.9, 2]  # 决策变量下界 CC0推荐：1.2-1.7
-        ub = [1.7, 1.8, 7]  # 决策变量上界
+        lb = [1.2, 0.9, 2]  # 决策变量下界 CC0推荐：1.2-1.7 cc1推荐：0.9-3.0 CC2推荐：2-7
+        ub = [1.7, 3.0, 7]  # 决策变量上界
         lbin = [1, 1, 1]  # 决策变量下边界
         ubin = [1, 1, 1]  # 决策变量上边界
         # 调用父类构造方法完成实例化
@@ -126,7 +126,6 @@ class MyProblem(ea.Problem):  # 继承Problem父类
                                      + dt3.GetResult("NVEHICLES", "sum", 0)
                                      + dt4.GetResult("NVEHICLES", "sum", 0)))
                 self.Sim.RunSingleStep()
-
             spdTotal = np.array(0.125 * sum(abs(np.array(t1) - np.array(self.V1)) / np.array(self.V1)
                                             + abs(np.array(t2) - np.array(self.V2)) / np.array(self.V2)
                                             + abs(np.array(t3) - np.array(self.V3)) / np.array(self.V3)
@@ -135,11 +134,10 @@ class MyProblem(ea.Problem):  # 继承Problem父类
                                             + abs(np.array(t6) - np.array(self.V6)) / np.array(self.V6)
                                             + abs(np.array(t7) - np.array(self.V7)) / np.array(self.V7)
                                             + abs(np.array(t8) - np.array(self.V8)) / np.array(self.V8)))
-            NVehTotal = np.array(
-                sum(abs(np.array(nVeh) - np.array(self.volume)) / np.array(self.volume)))  ## 这里应该是通过的车辆数（变量名起错了）
-            totalResult.append(spdTotal + NVehTotal)
-            print("spd误差：", spdTotal)
-            print("NVeh误差：", NVehTotal)
-            print("总误差为：", totalResult[k])
+            # NVehTotal = np.array(sum(abs(np.array(nVeh) - np.array(self.volume)) / np.array(self.volume)))  ##
+            totalResult.append(spdTotal)  # +NVehTotal)
+            # print("spd误差：", spdTotal)
+            # print("NVeh误差：", NVehTotal)
+            print("误差为：", totalResult[k])
             self.Sim.Stop()
         pop.ObjV = np.vstack(totalResult)  # 计算目标函数值，赋值给pop种群对象的ObjV属性
